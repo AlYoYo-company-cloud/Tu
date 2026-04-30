@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mr. Rami Fawzy | منصة فيزياء ثالثة ثانوي</title>
+  <meta name="description" content="منصة تعليمية عربية احترافية لمعلم الفيزياء Mr. Rami Fawzy لطلاب الصف الثالث الثانوي." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="fx-layer fx-grid" aria-hidden="true"></div>
+  <div class="fx-layer fx-orb fx-orb-a" aria-hidden="true"></div>
+  <div class="fx-layer fx-orb fx-orb-b" aria-hidden="true"></div>
+  <div class="fx-layer fx-orb fx-orb-c" aria-hidden="true"></div>
+  <div id="particleField" class="particle-field" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">R</div>
+      <div class="brand-copy">
+        <span class="brand-kicker">منصة فيزياء Premium</span>
+        <strong>Mr. Rami Fawzy</strong>
+      </div>
+    </div>
+
+    <nav class="top-actions" aria-label="التنقل السريع">
+      <a href="#lessons">الدروس</a>
+      <a href="#favorites">المفضلة</a>
+      <a href="#dashboard">لوحة المتابعة</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section class="hero panel">
+      <div class="hero-copy">
+        <span class="eyebrow">Physics Teacher – Third Secondary</span>
+        <h1>تعلم الفيزياء خطوة بخطوة مع تجربة مشاهدة راقية وسريعة.</h1>
+        <p>
+          منصة عربية بالكامل، مرتبة بعناية، ومصممة لتمنح الطالب رحلة تعلم واضحة ومريحة
+          مع فيديوهات الدروس، المفضلة، والتوصيات الذكية في مكان واحد.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="startLearningBtn">ابدأ التعلم</button>
+          <button class="btn btn-secondary" id="watchFirstBtn">شاهد أول درس</button>
+        </div>
+
+        <div class="hero-stats" id="heroStats"></div>
+      </div>
+
+      <div class="hero-spotlight panel-soft">
+        <div class="spotlight-head">
+          <span>مؤشرات سريعة</span>
+          <strong>تجربة منتج مدفوع</strong>
+        </div>
+
+        <div class="spotlight-grid">
+          <div class="mini-stat">
+            <span>الدروس</span>
+            <strong id="statLessons">0</strong>
+          </div>
+          <div class="mini-stat">
+            <span>المفضلة</span>
+            <strong id="statFavorites">0</strong>
+          </div>
+          <div class="mini-stat">
+            <span>آخر مشاهدة</span>
+            <strong id="statLastWatched">—</strong>
+          </div>
+          <div class="mini-stat">
+            <span>التقدم</span>
+            <strong id="statProgress">0%</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls panel" aria-label="البحث والفلترة">
+      <div class="search-wrap">
+        <label class="sr-only" for="lessonSearch">البحث عن الدروس</label>
+        <input id="lessonSearch" type="search" placeholder="ابحث عن فصل أو درس..." autocomplete="off" />
+      </div>
+
+      <div class="filters" id="filters"></div>
+    </section>
+
+    <section class="workspace">
+      <section class="content-column">
+        <section class="panel section-head" id="lessons">
+          <div>
+            <span class="eyebrow">الدروس المتاحة</span>
+            <h2>مكتبة الفصول</h2>
+          </div>
+          <p>اختر الدرس المناسب وشغله فورًا من الكارد أو من القائمة الجانبية.</p>
+        </section>
+
+        <div id="lessonsGrid" class="lessons-grid skeleton-grid" aria-live="polite"></div>
+
+        <section class="panel" id="favorites">
+          <div class="section-head compact">
+            <div>
+              <span class="eyebrow">المفضلة</span>
+              <h2>الدروس المحفوظة</h2>
+            </div>
+            <p>احفظ ما تريد الرجوع إليه بسرعة.</p>
+          </div>
+          <div id="favoritesGrid" class="lessons-grid compact-grid"></div>
+        </section>
+
+        <section class="panel" id="dashboard">
+          <div class="section-head compact">
+            <div>
+              <span class="eyebrow">لوحة المتابعة</span>
+              <h2>Dashboard محاكاة أمامية</h2>
+            </div>
+            <p>مبنية محليًا من سجل المشاهدة فقط.</p>
+          </div>
+
+          <div class="dashboard-grid">
+            <article class="dash-card">
+              <div class="dash-head">
+                <h3>متابعة المشاهدة</h3>
+                <span class="dash-pill" id="continuePercent">0%</span>
+              </div>
+              <div id="continueWatching" class="dash-body empty-state"></div>
+            </article>
+
+            <article class="dash-card">
+              <div class="dash-head">
+                <h3>مشاهَد مؤخرًا</h3>
+                <span class="dash-pill">حديث</span>
+              </div>
+              <div id="recentlyWatched" class="dash-body list-stack"></div>
+            </article>
+
+            <article class="dash-card">
+              <div class="dash-head">
+                <h3>الأكثر مشاهدة</h3>
+                <span class="dash-pill">الأعلى</span>
+              </div>
+              <div id="mostViewed" class="dash-body list-stack"></div>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <aside class="player-column">
+        <section class="panel player-panel">
+          <div class="player-head">
+            <div>
+              <span class="eyebrow">المشغل الرئيسي</span>
+              <h2 id="playerTitle">اختر درسًا للبدء</h2>
+              <p id="playerMeta">سيظهر الدرس النشط هنا مع التوصيات المرتبطة به.</p>
+            </div>
+            <button class="icon-btn" id="favoriteActiveBtn" title="إضافة إلى المفضلة" aria-label="إضافة إلى المفضلة">★</button>
+          </div>
+
+          <div class="video-shell">
+            <iframe
+              id="lessonFrame"
+              title="مشغل الفيديو"
+              src="about:blank"
+              allow="autoplay; encrypted-media; picture-in-picture; clipboard-write"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+
+          <div class="player-actions">
+            <button class="btn btn-secondary" id="prevLessonBtn">الدرس السابق</button>
+            <button class="btn btn-primary" id="nextLessonBtn">الدرس التالي</button>
+          </div>
+
+          <div class="progress-wrap">
+            <div class="progress-row">
+              <span>تقدم الدرس</span>
+              <strong id="progressLabel">0%</strong>
+            </div>
+            <div class="progress-bar" aria-hidden="true">
+              <span id="progressFill"></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel side-panel">
+          <div class="section-head compact">
+            <div>
+              <span class="eyebrow">قائمة التشغيل</span>
+              <h2>الدروس المتاحة</h2>
+            </div>
+            <p>اضغط على أي فصل للتشغيل الفوري.</p>
+          </div>
+          <div id="playlist" class="playlist"></div>
+        </section>
+
+        <section class="panel side-panel">
+          <div class="section-head compact">
+            <div>
+              <span class="eyebrow">اقتراحات ذكية</span>
+              <h2>Smart Recommendations</h2>
+            </div>
+            <p>مرتبطة بالدرس النشط وسجل المشاهدة.</p>
+          </div>
+          <div id="recommendations" class="list-stack"></div>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <div id="toastRoot" class="toast-root" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
